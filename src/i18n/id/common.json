@@ -1,0 +1,69 @@
+{
+    "response": {
+        "ok": "Berhasil",
+        "healthCheckSuccess": "Health check berhasil"
+    },
+    "error": {
+        "prismaClientKnownRequestError": {
+            "uniqueConstraintViolation": "Pelanggaran constraint unik",
+            "resourceNotFound": "Sumber daya tidak ditemukan",
+            "relatedResourceConstraintViolation": "Pelanggaran constraint pada sumber daya terkait",
+            "relationViolation": "Pelanggaran relasi",
+            "queryInterpretationError": "Kesalahan interpretasi query",
+            "tableDoesNotExist": "Tabel tidak ada",
+            "columnDoesNotExist": "Kolom tidak ada",
+            "databaseRequestError": "Kesalahan permintaan database"
+        },
+        "prismaClientValidationError": {
+            "invalidDatabaseRequest": "Permintaan database tidak valid"
+        },
+        "prismaClientInitializationError": {
+            "databaseServiceUnavailable": "Layanan database tidak tersedia"
+        },
+        "prismaClientUnknownRequestError": {
+            "databaseInternalError": "Kesalahan internal database"
+        },
+        "badRequest": "Permintaan tidak valid",
+        "unauthorized": "Tidak terautentikasi",
+        "paymentRequired": "Pembayaran diperlukan",
+        "forbidden": "Akses ditolak",
+        "notFound": "Data tidak ditemukan",
+        "methodNotAllowed": "Metode tidak diizinkan",
+        "notAcceptable": "Permintaan tidak dapat diterima",
+        "proxyAuthenticationRequired": "Autentikasi proxy diperlukan",
+        "requestTimeout": "Waktu permintaan habis",
+        "conflict": "Terjadi konflik data",
+        "gone": "Sumber daya yang diminta sudah tidak tersedia",
+        "lengthRequired": "Header Content-Length wajib disertakan",
+        "preconditionFailed": "Prasyarat tidak terpenuhi",
+        "payloadTooLarge": "Ukuran data terlalu besar",
+        "uriTooLong": "URI terlalu panjang",
+        "unsupportedMediaType": "Tipe media tidak didukung",
+        "requestedRangeNotSatisfiable": "Rentang yang diminta tidak dapat dipenuhi",
+        "expectationFailed": "Ekspektasi permintaan gagal",
+        "imATeapot": "Saya adalah teko",
+        "misdirectedRequest": "Permintaan salah tujuan",
+        "unprocessableEntity": "Entitas tidak dapat diproses",
+        "locked": "Sumber daya terkunci",
+        "failedDependency": "Ketergantungan gagal",
+        "tooEarly": "Terlalu dini untuk diproses",
+        "upgradeRequired": "Perlu peningkatan protokol",
+        "preconditionRequired": "Prasyarat wajib disertakan",
+        "tooManyRequests": "Terlalu banyak permintaan",
+        "requestHeaderFieldsTooLarge": "Header permintaan terlalu besar",
+        "unavailableForLegalReasons": "Tidak tersedia karena alasan hukum",
+        "unrecoverableError": "Kesalahan tidak dapat dipulihkan",
+        "internalServerError": "Terjadi kesalahan pada server",
+        "notImplemented": "Fitur belum diimplementasikan",
+        "badGateway": "Gateway tidak valid",
+        "serviceUnavailable": "Layanan tidak tersedia",
+        "gatewayTimeout": "Gateway kehabisan waktu",
+        "httpVersionNotSupported": "Versi HTTP tidak didukung",
+        "variantAlsoNegotiates": "Varian juga melakukan negosiasi",
+        "insufficientStorage": "Penyimpanan tidak mencukupi",
+        "loopDetected": "Loop terdeteksi",
+        "notExtended": "Ekstensi tambahan diperlukan",
+        "networkAuthenticationRequired": "Autentikasi jaringan diperlukan",
+        "validationFailed": "Validasi gagal"
+    }
+}
