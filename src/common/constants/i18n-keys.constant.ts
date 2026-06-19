@@ -9,6 +9,12 @@ export const I18N_KEYS = {
             logoutSuccess: 'common.response.auth.logoutSuccess',
             meSuccess: 'common.response.auth.meSuccess',
         },
+        project: {
+            created: 'common.response.project.created',
+            fetched: 'common.response.project.fetched',
+            updated: 'common.response.project.updated',
+            deleted: 'common.response.project.deleted',
+        },
     },
     error: {
         auth: {
@@ -16,7 +22,9 @@ export const I18N_KEYS = {
             invalidCredentials: 'common.error.auth.invalidCredentials',
             invalidRefreshToken: 'common.error.auth.invalidRefreshToken',
         },
-
+        project: {
+            notFound: 'common.error.project.notFound',
+        },
         badRequest: 'common.error.badRequest',
         unauthorized: 'common.error.unauthorized',
         paymentRequired: 'common.error.paymentRequired',
