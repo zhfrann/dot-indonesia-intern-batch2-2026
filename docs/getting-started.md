@@ -54,6 +54,7 @@ Create a `.env` file in the root directory with the following variables:
 |----------|-------------|---------|----------|
 | `NODE_ENV` | Application environment | `development` | No |
 | `PORT` | Server port | `3000` | No |
+| `CORS_ORIGIN` | CORS Origin | `http://localhost:3000,http://localhost:5173` | No |
 | `DATABASE_URL` | Full database connection URL | - | Yes |
 | `DATABASE_HOST` | Database host | `localhost` | Yes |
 | `DATABASE_PORT` | Database port | `3306` | No |
@@ -66,6 +67,9 @@ Create a `.env` file in the root directory with the following variables:
 | `JWT_REFRESH_EXPIRES_IN` | Refresh token expiration | `7d` | No |
 | `RATE_LIMIT_DEFAULT_TTL_MS` | Rate limit time window (ms) | `60000` | No |
 | `RATE_LIMIT_DEFAULT_LIMIT` | Max requests per time window | `120` | No |
+| `RATE_LIMIT_AUTH_TTL_MS` | Auth rate limit time window (ms) | `60000` | No |
+| `RATE_LIMIT_AUTH_LIMIT` | Auth max requests per time window | `10` | No |
+| `CACHE_TTL_MS` | Cache Time Windows | `30000` | Yes |
 
 **Example `.env` file:**
 

@@ -12,9 +12,14 @@ const envSchema = z.object({
     NODE_ENV: z.string().default('development'),
     PORT: z.coerce.number().positive().default(3000),
 
+    // Default CORS configuration
+    CORS_ORIGIN: z.string().optional().default('http://localhost:3000,http://localhost:5173'),
+
     // Default nestjs' rate limiter configuration
     RATE_LIMIT_DEFAULT_TTL_MS: z.coerce.number().positive().default(60000),
     RATE_LIMIT_DEFAULT_LIMIT: z.coerce.number().positive().default(120),
+    RATE_LIMIT_AUTH_TTL_MS: z.coerce.number().positive().default(60000),
+    RATE_LIMIT_AUTH_LIMIT: z.coerce.number().positive().default(10),
 
     // Default Prisma ORM configuration
     DATABASE_URL: z.string().min(1),
@@ -29,6 +34,9 @@ const envSchema = z.object({
     JWT_REFRESH_SECRET: z.string().min(10),
     JWT_ACCESS_EXPIRES_IN: z.string().default('15m'),
     JWT_REFRESH_EXPIRES_IN: z.string().default('7d'),
+
+    // Default cache configuration
+    CACHE_TTL_MS: z.coerce.number().positive().default(30000),
 });
 
 /**

@@ -13,6 +13,7 @@ import { AcceptLanguageResolver, CookieResolver, HeaderResolver, I18nJsonLoader,
 import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { RATE_LIMIT_POLICY } from './common/rate-limit/rate-limit.policy';
 import { resolveI18nPath } from './common/utils/i18n-path-resolver.util';
+import { CacheModule } from '@nestjs/cache-manager';
 
 @Module({
     imports: [
@@ -49,6 +50,13 @@ import { resolveI18nPath } from './common/utils/i18n-path-resolver.util';
                         limit: config.get<number>('RATE_LIMIT_DEFAULT_LIMIT') ?? RATE_LIMIT_POLICY.default.limit,
                     },
                 ],
+            }),
+        }),
+        CacheModule.registerAsync({
+            isGlobal: true,
+            inject: [ConfigService],
+            useFactory: (config: ConfigService) => ({
+                ttl: config.get<number>('CACHE_TTL_MS') ?? 30000,
             }),
         }),
         PrismaModule,

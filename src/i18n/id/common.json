@@ -27,7 +27,7 @@
         "unauthorized": "Tidak terautentikasi",
         "paymentRequired": "Pembayaran diperlukan",
         "forbidden": "Akses ditolak",
-        "notFound": "Data tidak ditemukan",
+        "notFound": "Data tidak ditemukan, akses `/docs` untuk dokumentasi",
         "methodNotAllowed": "Metode tidak diizinkan",
         "notAcceptable": "Permintaan tidak dapat diterima",
         "proxyAuthenticationRequired": "Autentikasi proxy diperlukan",

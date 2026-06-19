@@ -8,7 +8,7 @@
         "unauthorized": "Unauthorized",
         "paymentRequired": "Payment required",
         "forbidden": "Forbidden",
-        "notFound": "Resource not found",
+        "notFound": "Resource not found, visit `/docs` for documentation",
         "methodNotAllowed": "Method not allowed",
         "notAcceptable": "Not acceptable",
         "proxyAuthenticationRequired": "Proxy authentication required",

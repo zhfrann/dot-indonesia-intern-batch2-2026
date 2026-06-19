@@ -13,3 +13,92 @@ generator client {
 datasource db {
     provider = "mysql"
 }
+
+enum ProjectStatus {
+    ACTIVE
+    COMPLETED
+    ARCHIVED
+}
+
+enum TaskStatus {
+    TODO
+    IN_PROGRESS
+    DONE
+}
+
+model User {
+    id           String @id @default(uuid()) @db.VarChar(36)
+    email        String @unique @db.VarChar(191)
+    name         String @db.VarChar(120)
+    passwordHash String @map("password_hash") @db.VarChar(255)
+
+    sessions      AuthSession[]
+    projects      Project[]
+    assignedTasks Task[]        @relation("TaskAssignee")
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@map("users")
+}
+
+model AuthSession {
+    id               String    @id @default(uuid()) @db.VarChar(36)
+    userId           String    @map("user_id") @db.VarChar(36)
+    refreshTokenHash String    @map("refresh_token_hash") @db.VarChar(255)
+    userAgent        String?   @map("user_agent") @db.VarChar(255)
+    ipAddress        String?   @map("ip_address") @db.VarChar(45)
+    expiresAt        DateTime  @map("expires_at")
+    revokedAt        DateTime? @map("revoked_at")
+
+    user User @relation(fields: [userId], references: [id], onDelete: Cascade)
+
+    createdAt DateTime @default(now()) @map("created_at")
+    updatedAt DateTime @updatedAt @map("updated_at")
+
+    @@index([userId])
+    @@map("auth_sessions")
+}
+
+model Project {
+    id          String        @id @default(uuid()) @db.VarChar(36)
+    name        String        @db.VarChar(150)
+    description String?       @db.Text
+    status      ProjectStatus @default(ACTIVE)
+
+    ownerId String @map("owner_id") @db.VarChar(36)
+    owner   User   @relation(fields: [ownerId], references: [id], onDelete: Cascade)
+
+    tasks Task[]
+
+    createdAt DateTime  @default(now()) @map("created_at")
+    updatedAt DateTime  @updatedAt @map("updated_at")
+    deletedAt DateTime? @map("deleted_at")
+
+    @@index([ownerId])
+    @@index([status])
+    @@map("projects")
+}
+
+model Task {
+    id          String     @id @default(uuid()) @db.VarChar(36)
+    title       String     @db.VarChar(150)
+    description String?    @db.Text
+    status      TaskStatus @default(TODO)
+    dueDate     DateTime?  @map("due_date")
+
+    projectId String  @map("project_id") @db.VarChar(36)
+    project   Project @relation(fields: [projectId], references: [id], onDelete: Cascade)
+
+    assigneeId String? @map("assignee_id") @db.VarChar(36)
+    assignee   User?   @relation("TaskAssignee", fields: [assigneeId], references: [id], onDelete: SetNull)
+
+    createdAt DateTime  @default(now()) @map("created_at")
+    updatedAt DateTime  @updatedAt @map("updated_at")
+    deletedAt DateTime? @map("deleted_at")
+
+    @@index([projectId])
+    @@index([assigneeId])
+    @@index([status])
+    @@map("tasks")
+}

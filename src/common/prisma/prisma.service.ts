@@ -12,11 +12,11 @@ export class PrismaService extends PrismaClient implements OnModuleInit, OnModul
     ) {
         super({
             adapter: new PrismaMariaDb({
-                host: configService.get('DATABASE_HOST'),
-                user: configService.get('DATABASE_USER'),
-                password: configService.get('DATABASE_PASSWORD'),
-                database: configService.get('DATABASE_NAME'),
-                port: configService.get('DATABASE_PORT'),
+                host: configService.getOrThrow('DATABASE_HOST'),
+                user: configService.getOrThrow('DATABASE_USER'),
+                password: configService.getOrThrow('DATABASE_PASSWORD'),
+                database: configService.getOrThrow('DATABASE_NAME'),
+                port: configService.getOrThrow('DATABASE_PORT'),
                 // connectionLimit: 5,
             }),
         });
