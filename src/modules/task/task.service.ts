@@ -1,4 +1,10 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { CACHE_MANAGER } from '@nestjs/cache-manager';
+import { Inject, Injectable, NotFoundException } from '@nestjs/common';
+import { ConfigService } from '@nestjs/config';
+import type { Cache } from 'cache-manager';
+import { CacheKey, CacheVersionKey } from 'src/common/cache/cache-key.util';
+import { bumpCacheVersion, getCacheVersion } from 'src/common/cache/cache-version.util';
+import type { PaginationMeta } from 'src/common/utils/pagination.util';
 import { InjectPinoLogger, PinoLogger } from 'nestjs-pino';
 import { I18N_KEYS } from 'src/common/constants/i18n-keys.constant';
 import { getPagination, getPaginationMeta } from 'src/common/utils/pagination.util';
@@ -21,11 +27,20 @@ export type TaskResponse = {
     updatedAt: Date;
 };
 
+export type TaskListResponse = {
+    data: TaskResponse[];
+    meta: {
+        pagination: PaginationMeta;
+    };
+};
+
 @Injectable()
 export class TaskService {
     constructor(
         private readonly taskRepository: TaskRepository,
         private readonly projectRepository: ProjectRepository,
+        private readonly configService: ConfigService,
+        @Inject(CACHE_MANAGER) private readonly cacheManager: Cache,
         @InjectPinoLogger(TaskService.name) private readonly logger: PinoLogger,
     ) {}
 
@@ -39,12 +54,14 @@ export class TaskService {
             dueDate: dto.dueDate ? new Date(dto.dueDate) : undefined,
         });
 
+        await this.invalidateTaskCache(user.sub);
+
         this.logger.info({ userId: user.sub, projectId, taskId: task.id }, 'Task created');
 
         return this.toResponse(task);
     }
 
-    async findAllByProject(user: AuthenticatedUser, projectId: string, query: QueryTaskDto) {
+    async findAllByProject(user: AuthenticatedUser, projectId: string, query: QueryTaskDto): Promise<TaskListResponse> {
         await this.ensureProjectOwnedByUser(projectId, user.sub);
 
         const pagination = getPagination({
@@ -53,6 +70,24 @@ export class TaskService {
         });
 
         const search = query.search?.trim();
+        const version = await this.getTaskCacheVersion(user.sub);
+
+        const cacheKey = CacheKey.taskList({
+            userId: user.sub,
+            version,
+            projectId,
+            page: pagination.page,
+            limit: pagination.limit,
+            search,
+            status: query.status,
+        });
+
+        const cached = await this.cacheManager.get<TaskListResponse>(cacheKey);
+
+        if (cached) {
+            this.logger.info({ userId: user.sub, projectId, cacheKey }, 'Task list cache hit');
+            return cached;
+        }
 
         const [tasks, total] = await Promise.all([
             this.taskRepository.findManyByProject({
@@ -71,18 +106,44 @@ export class TaskService {
             }),
         ]);
 
-        return {
+        const result: TaskListResponse = {
             data: tasks.map((task) => this.toResponse(task)),
             meta: {
                 pagination: getPaginationMeta(pagination.page, pagination.limit, total),
             },
         };
+
+        await this.cacheManager.set(cacheKey, result, this.getCacheTtlMs());
+
+        this.logger.info({ userId: user.sub, projectId, cacheKey }, 'Task list cache set');
+
+        return result;
     }
 
     async findOne(user: AuthenticatedUser, id: string): Promise<TaskResponse> {
-        const task = await this.findOwnedTaskOrThrow(id, user.sub);
+        const version = await this.getTaskCacheVersion(user.sub);
 
-        return this.toResponse(task);
+        const cacheKey = CacheKey.taskDetail({
+            userId: user.sub,
+            version,
+            taskId: id,
+        });
+
+        const cached = await this.cacheManager.get<TaskResponse>(cacheKey);
+
+        if (cached) {
+            this.logger.info({ userId: user.sub, taskId: id, cacheKey }, 'Task detail cache hit');
+            return cached;
+        }
+
+        const task = await this.findOwnedTaskOrThrow(id, user.sub);
+        const result = this.toResponse(task);
+
+        await this.cacheManager.set(cacheKey, result, this.getCacheTtlMs());
+
+        this.logger.info({ userId: user.sub, taskId: id, cacheKey }, 'Task detail cache set');
+
+        return result;
     }
 
     async update(user: AuthenticatedUser, id: string, dto: UpdateTaskDto): Promise<TaskResponse> {
@@ -108,6 +169,8 @@ export class TaskService {
 
         const task = await this.taskRepository.update(id, updateData);
 
+        await this.invalidateTaskCache(user.sub);
+
         this.logger.info({ userId: user.sub, taskId: task.id }, 'Task updated');
 
         return this.toResponse(task);
@@ -119,6 +182,8 @@ export class TaskService {
         if (deletedCount === 0) {
             this.throwTaskNotFound();
         }
+
+        await this.invalidateTaskCache(user.sub);
 
         this.logger.info({ userId: user.sub, taskId: id }, 'Task deleted');
 
@@ -148,6 +213,18 @@ export class TaskService {
         }
 
         return task;
+    }
+
+    private async getTaskCacheVersion(userId: string): Promise<string> {
+        return getCacheVersion(this.cacheManager, CacheVersionKey.tasks(userId));
+    }
+
+    private async invalidateTaskCache(userId: string): Promise<void> {
+        await bumpCacheVersion(this.cacheManager, CacheVersionKey.tasks(userId));
+    }
+
+    private getCacheTtlMs(): number {
+        return this.configService.get<number>('CACHE_TTL_MS') ?? 30000;
     }
 
     private toResponse(task: TaskRecord): TaskResponse {
