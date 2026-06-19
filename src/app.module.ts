@@ -89,10 +89,6 @@ import { TaskModule } from './modules/task/task.module';
         },
         {
             provide: APP_GUARD,
-            useClass: ThrottlerGuard,
-        },
-        {
-            provide: APP_GUARD,
             useClass: JwtAuthGuard,
         },
     ],

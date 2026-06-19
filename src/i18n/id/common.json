@@ -5,8 +5,9 @@
         "auth": {
             "registerSuccess": "Registrasi berhasil",
             "loginSuccess": "Login berhasil",
+            "refreshSuccess": "Token berhasil diperbarui",
             "logoutSuccess": "Logout berhasil",
-            "profileFetched": "Profil berhasil diambil"
+            "meSuccess": "Data user berhasil diambil"
         },
         "project": {
             "created": "Proyek berhasil dibuat",
@@ -22,6 +23,13 @@
         }
     },
     "error": {
+        "auth": {
+            "registerSuccess": "Registrasi berhasil",
+            "loginSuccess": "Login berhasil",
+            "refreshSuccess": "Token berhasil diperbarui",
+            "logoutSuccess": "Logout berhasil",
+            "meSuccess": "Data user berhasil diambil"
+        },
         "prismaClientKnownRequestError": {
             "uniqueConstraintViolation": "Pelanggaran constraint unik",
             "resourceNotFound": "Sumber daya tidak ditemukan",

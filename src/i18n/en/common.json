@@ -5,8 +5,9 @@
         "auth": {
             "registerSuccess": "Register success",
             "loginSuccess": "Login success",
+            "refreshSuccess": "Token refreshed successfully",
             "logoutSuccess": "Logout success",
-            "profileFetched": "Profile fetched successfully"
+            "meSuccess": "Current user fetched successfully"
         },
         "project": {
             "created": "Project created successfully",
@@ -22,6 +23,11 @@
         }
     },
     "error": {
+        "auth": {
+            "emailAlreadyExists": "Email already registered",
+            "invalidCredentials": "Invalid credentials",
+            "invalidRefreshToken": "Invalid refresh token"
+        },
         "badRequest": "Bad request",
         "unauthorized": "Unauthorized",
         "paymentRequired": "Payment required",

@@ -1,4 +1,3 @@
-/** Nestjs-i18n constants keys */
 export const I18N_KEYS = {
     response: {
         ok: 'common.response.ok',
@@ -6,23 +5,18 @@ export const I18N_KEYS = {
         auth: {
             registerSuccess: 'common.response.auth.registerSuccess',
             loginSuccess: 'common.response.auth.loginSuccess',
+            refreshSuccess: 'common.response.auth.refreshSuccess',
             logoutSuccess: 'common.response.auth.logoutSuccess',
-            profileFetched: 'common.response.auth.profileFetched',
-        },
-        project: {
-            created: 'common.response.project.created',
-            fetched: 'common.response.project.fetched',
-            updated: 'common.response.project.updated',
-            deleted: 'common.response.project.deleted',
-        },
-        task: {
-            created: 'common.response.task.created',
-            fetched: 'common.response.task.fetched',
-            updated: 'common.response.task.updated',
-            deleted: 'common.response.task.deleted',
+            meSuccess: 'common.response.auth.meSuccess',
         },
     },
     error: {
+        auth: {
+            emailAlreadyExists: 'common.error.auth.emailAlreadyExists',
+            invalidCredentials: 'common.error.auth.invalidCredentials',
+            invalidRefreshToken: 'common.error.auth.invalidRefreshToken',
+        },
+
         badRequest: 'common.error.badRequest',
         unauthorized: 'common.error.unauthorized',
         paymentRequired: 'common.error.paymentRequired',
