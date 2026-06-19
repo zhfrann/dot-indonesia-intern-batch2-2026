@@ -3,6 +3,24 @@ export const I18N_KEYS = {
     response: {
         ok: 'common.response.ok',
         healthCheckSuccess: 'common.response.healthCheckSuccess',
+        auth: {
+            registerSuccess: 'common.response.auth.registerSuccess',
+            loginSuccess: 'common.response.auth.loginSuccess',
+            logoutSuccess: 'common.response.auth.logoutSuccess',
+            profileFetched: 'common.response.auth.profileFetched',
+        },
+        project: {
+            created: 'common.response.project.created',
+            fetched: 'common.response.project.fetched',
+            updated: 'common.response.project.updated',
+            deleted: 'common.response.project.deleted',
+        },
+        task: {
+            created: 'common.response.task.created',
+            fetched: 'common.response.task.fetched',
+            updated: 'common.response.task.updated',
+            deleted: 'common.response.task.deleted',
+        },
     },
     error: {
         badRequest: 'common.error.badRequest',

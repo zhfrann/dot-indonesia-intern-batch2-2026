@@ -1,7 +1,25 @@
 {
     "response": {
         "ok": "OK",
-        "healthCheckSuccess": "Health check success"
+        "healthCheckSuccess": "Health check success",
+        "auth": {
+            "registerSuccess": "Register success",
+            "loginSuccess": "Login success",
+            "logoutSuccess": "Logout success",
+            "profileFetched": "Profile fetched successfully"
+        },
+        "project": {
+            "created": "Project created successfully",
+            "fetched": "Project fetched successfully",
+            "updated": "Project updated successfully",
+            "deleted": "Project deleted successfully"
+        },
+        "task": {
+            "created": "Task created successfully",
+            "fetched": "Task fetched successfully",
+            "updated": "Task updated successfully",
+            "deleted": "Task deleted successfully"
+        }
     },
     "error": {
         "badRequest": "Bad request",

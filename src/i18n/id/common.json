@@ -1,7 +1,25 @@
 {
     "response": {
         "ok": "Berhasil",
-        "healthCheckSuccess": "Health check berhasil"
+        "healthCheckSuccess": "Health check berhasil",
+        "auth": {
+            "registerSuccess": "Registrasi berhasil",
+            "loginSuccess": "Login berhasil",
+            "logoutSuccess": "Logout berhasil",
+            "profileFetched": "Profil berhasil diambil"
+        },
+        "project": {
+            "created": "Proyek berhasil dibuat",
+            "fetched": "Proyek berhasil diambil",
+            "updated": "Proyek berhasil diperbarui",
+            "deleted": "Proyek berhasil dihapus"
+        },
+        "task": {
+            "created": "Tugas berhasil dibuat",
+            "fetched": "Tugas berhasil diambil",
+            "updated": "Tugas berhasil diperbarui",
+            "deleted": "Tugas berhasil dihapus"
+        }
     },
     "error": {
         "prismaClientKnownRequestError": {

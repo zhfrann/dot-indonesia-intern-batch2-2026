@@ -1,6 +1,7 @@
 import { Controller, Get, Logger } from '@nestjs/common';
 import { SkipThrottle } from '@nestjs/throttler';
 import { I18N_KEYS } from 'src/common/constants/i18n-keys.constant';
+import { Public } from 'src/common/decorators/public.decorator';
 import { ResponseMessage } from 'src/common/decorators/response-message.decorator';
 
 /**
@@ -11,6 +12,7 @@ import { ResponseMessage } from 'src/common/decorators/response-message.decorato
 export class HealthController {
     private readonly logger = new Logger(HealthController.name);
 
+    @Public()
     @Get()
     @ResponseMessage(I18N_KEYS.response.healthCheckSuccess)
     @SkipThrottle()
