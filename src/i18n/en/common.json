@@ -31,6 +31,9 @@
         "project": {
             "notFound": "Project not found"
         },
+        "task": {
+            "notFound": "Task not found"
+        },
         "badRequest": "Bad request",
         "unauthorized": "Unauthorized",
         "paymentRequired": "Payment required",

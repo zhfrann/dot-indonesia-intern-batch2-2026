@@ -15,6 +15,12 @@ export const I18N_KEYS = {
             updated: 'common.response.project.updated',
             deleted: 'common.response.project.deleted',
         },
+        task: {
+            created: 'common.response.task.created',
+            fetched: 'common.response.task.fetched',
+            updated: 'common.response.task.updated',
+            deleted: 'common.response.task.deleted',
+        },
     },
     error: {
         auth: {
@@ -24,6 +30,9 @@ export const I18N_KEYS = {
         },
         project: {
             notFound: 'common.error.project.notFound',
+        },
+        task: {
+            notFound: 'common.error.task.notFound',
         },
         badRequest: 'common.error.badRequest',
         unauthorized: 'common.error.unauthorized',

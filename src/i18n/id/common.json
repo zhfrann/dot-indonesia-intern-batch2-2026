@@ -16,10 +16,10 @@
             "deleted": "Project berhasil dihapus"
         },
         "task": {
-            "created": "Tugas berhasil dibuat",
-            "fetched": "Tugas berhasil diambil",
-            "updated": "Tugas berhasil diperbarui",
-            "deleted": "Tugas berhasil dihapus"
+            "created": "Task berhasil dibuat",
+            "fetched": "Task berhasil diambil",
+            "updated": "Task berhasil diperbarui",
+            "deleted": "Task berhasil dihapus"
         }
     },
     "error": {
@@ -32,6 +32,9 @@
         },
         "project": {
             "notFound": "Project tidak ditemukan"
+        },
+        "task": {
+            "notFound": "Task tidak ditemukan"
         },
         "prismaClientKnownRequestError": {
             "uniqueConstraintViolation": "Pelanggaran constraint unik",
