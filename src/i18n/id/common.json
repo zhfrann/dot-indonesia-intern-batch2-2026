@@ -10,10 +10,10 @@
             "meSuccess": "Data user berhasil diambil"
         },
         "project": {
-            "created": "Proyek berhasil dibuat",
-            "fetched": "Proyek berhasil diambil",
-            "updated": "Proyek berhasil diperbarui",
-            "deleted": "Proyek berhasil dihapus"
+            "created": "Project berhasil dibuat",
+            "fetched": "Project berhasil diambil",
+            "updated": "Project berhasil diperbarui",
+            "deleted": "Project berhasil dihapus"
         },
         "task": {
             "created": "Tugas berhasil dibuat",
@@ -29,6 +29,9 @@
             "refreshSuccess": "Token berhasil diperbarui",
             "logoutSuccess": "Logout berhasil",
             "meSuccess": "Data user berhasil diambil"
+        },
+        "project": {
+            "notFound": "Project tidak ditemukan"
         },
         "prismaClientKnownRequestError": {
             "uniqueConstraintViolation": "Pelanggaran constraint unik",

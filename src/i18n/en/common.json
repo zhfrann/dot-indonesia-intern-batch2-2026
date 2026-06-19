@@ -28,6 +28,9 @@
             "invalidCredentials": "Invalid credentials",
             "invalidRefreshToken": "Invalid refresh token"
         },
+        "project": {
+            "notFound": "Project not found"
+        },
         "badRequest": "Bad request",
         "unauthorized": "Unauthorized",
         "paymentRequired": "Payment required",
