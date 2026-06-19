@@ -14,6 +14,10 @@ import { ThrottlerGuard, ThrottlerModule } from '@nestjs/throttler';
 import { RATE_LIMIT_POLICY } from './common/rate-limit/rate-limit.policy';
 import { resolveI18nPath } from './common/utils/i18n-path-resolver.util';
 import { CacheModule } from '@nestjs/cache-manager';
+import { JwtAuthGuard } from './modules/auth/guards/jwt-auth.guard';
+import { AuthModule } from './modules/auth/auth.module';
+import { ProjectModule } from './modules/project/project.module';
+import { TaskModule } from './modules/task/task.module';
 
 @Module({
     imports: [
@@ -61,6 +65,9 @@ import { CacheModule } from '@nestjs/cache-manager';
         }),
         PrismaModule,
         HealthModule,
+        AuthModule,
+        ProjectModule,
+        TaskModule,
     ],
     controllers: [],
     providers: [
@@ -79,6 +86,10 @@ import { CacheModule } from '@nestjs/cache-manager';
         {
             provide: APP_GUARD,
             useClass: ThrottlerGuard,
+        },
+        {
+            provide: APP_GUARD,
+            useClass: JwtAuthGuard,
         },
     ],
 })

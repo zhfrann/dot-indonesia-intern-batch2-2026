@@ -1,10 +1,22 @@
-/** Nestjs-i18n constants keys */
 export const I18N_KEYS = {
     response: {
         ok: 'common.response.ok',
         healthCheckSuccess: 'common.response.healthCheckSuccess',
+        auth: {
+            registerSuccess: 'common.response.auth.registerSuccess',
+            loginSuccess: 'common.response.auth.loginSuccess',
+            refreshSuccess: 'common.response.auth.refreshSuccess',
+            logoutSuccess: 'common.response.auth.logoutSuccess',
+            meSuccess: 'common.response.auth.meSuccess',
+        },
     },
     error: {
+        auth: {
+            emailAlreadyExists: 'common.error.auth.emailAlreadyExists',
+            invalidCredentials: 'common.error.auth.invalidCredentials',
+            invalidRefreshToken: 'common.error.auth.invalidRefreshToken',
+        },
+
         badRequest: 'common.error.badRequest',
         unauthorized: 'common.error.unauthorized',
         paymentRequired: 'common.error.paymentRequired',

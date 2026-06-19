@@ -1,9 +1,33 @@
 {
     "response": {
         "ok": "OK",
-        "healthCheckSuccess": "Health check success"
+        "healthCheckSuccess": "Health check success",
+        "auth": {
+            "registerSuccess": "Register success",
+            "loginSuccess": "Login success",
+            "refreshSuccess": "Token refreshed successfully",
+            "logoutSuccess": "Logout success",
+            "meSuccess": "Current user fetched successfully"
+        },
+        "project": {
+            "created": "Project created successfully",
+            "fetched": "Project fetched successfully",
+            "updated": "Project updated successfully",
+            "deleted": "Project deleted successfully"
+        },
+        "task": {
+            "created": "Task created successfully",
+            "fetched": "Task fetched successfully",
+            "updated": "Task updated successfully",
+            "deleted": "Task deleted successfully"
+        }
     },
     "error": {
+        "auth": {
+            "emailAlreadyExists": "Email already registered",
+            "invalidCredentials": "Invalid credentials",
+            "invalidRefreshToken": "Invalid refresh token"
+        },
         "badRequest": "Bad request",
         "unauthorized": "Unauthorized",
         "paymentRequired": "Payment required",

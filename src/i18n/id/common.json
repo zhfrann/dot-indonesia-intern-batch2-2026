@@ -1,9 +1,35 @@
 {
     "response": {
         "ok": "Berhasil",
-        "healthCheckSuccess": "Health check berhasil"
+        "healthCheckSuccess": "Health check berhasil",
+        "auth": {
+            "registerSuccess": "Registrasi berhasil",
+            "loginSuccess": "Login berhasil",
+            "refreshSuccess": "Token berhasil diperbarui",
+            "logoutSuccess": "Logout berhasil",
+            "meSuccess": "Data user berhasil diambil"
+        },
+        "project": {
+            "created": "Proyek berhasil dibuat",
+            "fetched": "Proyek berhasil diambil",
+            "updated": "Proyek berhasil diperbarui",
+            "deleted": "Proyek berhasil dihapus"
+        },
+        "task": {
+            "created": "Tugas berhasil dibuat",
+            "fetched": "Tugas berhasil diambil",
+            "updated": "Tugas berhasil diperbarui",
+            "deleted": "Tugas berhasil dihapus"
+        }
     },
     "error": {
+        "auth": {
+            "registerSuccess": "Registrasi berhasil",
+            "loginSuccess": "Login berhasil",
+            "refreshSuccess": "Token berhasil diperbarui",
+            "logoutSuccess": "Logout berhasil",
+            "meSuccess": "Data user berhasil diambil"
+        },
         "prismaClientKnownRequestError": {
             "uniqueConstraintViolation": "Pelanggaran constraint unik",
             "resourceNotFound": "Sumber daya tidak ditemukan",
